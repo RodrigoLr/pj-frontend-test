@@ -1,0 +1,24 @@
+<div class="container py-5">
+  <img src="assets/img/pokemon.png" alt="" class="img-fluid">
+</div>
+<div class="container" infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScrollDown()">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let pokemon of pokemons">
+      <div class="card text-center mb-3">
+        <div class="card-body">
+          <div class="clearfix">
+            <div class="float-right cursor-pointer" title="Favorite" (click)="toggleFavorite(pokemon.id)"
+              [ngClass]="{'text-lighter': !pokemon.favorite, 'text-danger': pokemon.favorite}">
+              <i class="ion ion-ios-heart"></i>
+            </div>
+          </div>
+          <div class="d-block">
+            <img [src]="getSprite(pokemon.id)" class="mb-2 pokemon-sprite" [alt]="'Sprite of ' + pokemon.name">
+          </div>
+          <h6><span class="text-body">{{ pokemon.name | titlecase }}</span></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
